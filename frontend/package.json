@@ -1,0 +1,39 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.3",
+    "chart.js": "^2.7.3",
+    "crypto-js": "^3.1.9-1",
+    "hover.css": "^2.3.2",
+    "material-ui": "^0.20.2",
+    "react": "^16.4.1",
+    "react-animations": "^1.0.0",
+    "react-chartjs-2": "^2.7.4",
+    "react-custom-scroll": "^4.0.0",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.4.1",
+    "react-draggable": "^3.0.5",
+    "react-promise": "^2.0.3",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1",
+    "react-scroll": "^1.7.10",
+    "react-scroll-to": "^1.2.2",
+    "react-sticky-el": "^1.0.20",
+    "reactstrap": "^6.1.0",
+    "scroll-into-view": "^1.9.3",
+    "semantic-ui-css": "^2.3.1",
+    "semantic-ui-react": "^0.79.0",
+    "styled-components": "^3.2.3",
+    "sweetalert2": "^7.28.8"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

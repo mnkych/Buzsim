@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-Web_1920_7);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #15abaa;
+      }
+
+      .cls-4 {
+        opacity: 0.6;
+      }
+
+      .cls-5 {
+        fill: #3bbfbe;
+        opacity: 0.341;
+      }
+
+      .cls-6 {
+        fill: #6a6a6a;
+      }
+    </style>
+    <clipPath id="clip-Web_1920_7">
+      <rect width="1920" height="1080"/>
+    </clipPath>
+  </defs>
+  <g id="Web_1920_7" data-name="Web 1920 – 7" class="cls-1">
+    <rect class="cls-6" width="1920" height="1080"/>
+    <rect id="Rectangle_56" data-name="Rectangle 56" class="cls-2" width="1377" height="670" transform="translate(543 610)"/>
+    <rect id="Screen_Shot_2561-10-25_at_19.32.41" data-name="Screen Shot 2561-10-25 at 19.32.41" class="cls-3" width="1377" height="570" transform="translate(543)"/>
+    <rect id="Screen_Shot_2561-10-25_at_19.32.41-2" data-name="Screen Shot 2561-10-25 at 19.32.41" class="cls-4" width="1397" height="639" transform="translate(543 610)"/>
+    <rect id="Rectangle_53" data-name="Rectangle 53" class="cls-2" width="505" height="658"/>
+    <rect id="Screen_Shot_2561-10-25_at_19.32.41-3" data-name="Screen Shot 2561-10-25 at 19.32.41" class="cls-4" width="505" height="658"/>
+    <g id="Group_337" data-name="Group 337" transform="translate(0 -31)">
+      <rect id="Rectangle_55" data-name="Rectangle 55" class="cls-2" width="505" height="670" transform="translate(0 722)"/>
+      <rect id="Screen_Shot_2561-10-25_at_19.32.41-4" data-name="Screen Shot 2561-10-25 at 19.32.41" class="cls-5" width="505" height="527" transform="translate(0 722)"/>
+    </g>
+  </g>
+</svg>
