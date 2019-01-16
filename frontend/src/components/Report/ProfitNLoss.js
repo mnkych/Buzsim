@@ -570,7 +570,7 @@ export default class ProfitNLoss extends React.Component {
                 <Table singleLine size='small'>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell colSpan='12' style={{ width: '150%' }}>
+                            <Table.HeaderCell colSpan={this.props.businessScenarioData.BusinessPlayingYear+2} style={{ width: '150%' }}>
                                 Profit/Loss
                             </Table.HeaderCell>
                         </Table.Row>
@@ -686,7 +686,6 @@ export default class ProfitNLoss extends React.Component {
                             <Table.Cell style={{ paddingLeft: '2em' }}>Amortisation</Table.Cell>
                             {this.showAmortisation()}
                         </Table.Row>
-                        {/* {this.showEbitda()} */}
                         <Table.Row active>
                             <Table.HeaderCell style={{ borderTop: 'solid 2px #000000' }}>EBIT</Table.HeaderCell>
                             {this.showEbit()}
@@ -695,7 +694,6 @@ export default class ProfitNLoss extends React.Component {
                             <Table.Cell style={{ paddingLeft: '2em' }}>Interest</Table.Cell>
                             {this.showInterest()}
                         </Table.Row>
-                        {/* {this.showEbitOld()} */}
                         <Table.Row active>
                             <Table.HeaderCell style={{ borderTop: 'solid 2px #000000' }}>EBIT</Table.HeaderCell>
                             {this.showNewEbit()}
@@ -704,7 +702,6 @@ export default class ProfitNLoss extends React.Component {
                             <Table.Cell style={{ paddingLeft: '2em' }}>Tax</Table.Cell>
                             {this.showTax()}
                         </Table.Row>
-                        {/* {this.showEbitNew()} */}
                         <Table.Row active>
                             <Table.HeaderCell style={{ borderTop: 'solid 2px #000000' }}>Net profit</Table.HeaderCell> 
                             {this.showNetProfit()}

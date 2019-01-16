@@ -7,6 +7,7 @@ import HumanResource from '../components/Create/HumanResource/HumanResource';
 import MacroEnvCreate from '../components/Create/MacroEnv/MacroEnvCreate';
 import Competitor from '../components/Create/Competitor/competitor';
 import PromotionCreate from '../components/Create/Promotion/promotion';
+import FooterTeal from '../components/Footer/FooterTeal'
 import scrollIntoView from 'scroll-into-view'
 import {
     Sidenav,
@@ -1719,8 +1720,8 @@ export default class Create extends React.Component {
                                 
                             </Grid.Row>
                         </Grid>
-
                     </Container>
+                    <FooterTeal/>
                 </Bg_wrap>
             )
         } else {

@@ -1,6 +1,7 @@
 import React from 'react';
 import Content from '../components/Instruction/Content';
 import NavbarContent from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer'
 import { Grid, Image } from 'semantic-ui-react'
 import {
     Body_content,
@@ -29,6 +30,7 @@ export default class Instruction extends React.Component {
                         </Grid_bg>
                     </Content_wrap>
                 </Body_content>
+                <Footer />
             </div>
 
         )

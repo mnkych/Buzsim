@@ -1,5 +1,5 @@
 import React from 'react';
-import {getBusinessNotInClassroom, getDecorationNotInBD, getSizeNotInBB, getLocationNotInBB, getOwnerNotInB, getHumanNotInBH, getMarketingNotInBM, getCompetitorNotIntBC, getProductNotInBP } from '../Provider/GetData/GetData'
+import { getBusinessNotInClassroom, getDecorationNotInBD, getSizeNotInBB, getLocationNotInBB, getOwnerNotInB, getHumanNotInBH, getMarketingNotInBM, getCompetitorNotIntBC, getProductNotInBP } from '../Provider/GetData/GetData'
 import { UserProvider } from '../Provider/UserProvider/UserProvider'
 import swal from 'sweetalert2'
 import { deleteBusiness, deleteProductQuality, deleteDeCID, deleteLocation, deleteSize, deleteCompetitor, deleteMarketing, deleteHumanID, deleteProduct, deleteOwner } from '../Provider/DeleteData/DeleteData'
@@ -9,7 +9,7 @@ import { splitArrayToArray, } from '../Provider/CreateProvider/CreateProvider'
 import DeleteScenario from '../components/Delete/DeleteScenario/DeleteScenario'
 import DeleteSize from '../components/Delete/DeleteScenario/DeleteSize'
 import DeleteDecoration from '../components/Delete/DeleteScenario/DeleteDecoration'
-
+import FooterTeal from '../components/Footer/FooterTeal'
 import {
     Container,
     Icon,
@@ -326,114 +326,117 @@ export default class Delete extends React.Component {
     render() {
         if (UserProvider.getUserOnLog()) {
             return (
-                <Bg_wrap>
-                    <Back_hv style={{ paddingTop: "2%", position: "absolute" }} name="arrow alternate circle left" size='huge' link color='grey' onClick={() => this.handleLocation('Management')} />
-                    <Body_Main id="main" style={{ paddingTop: "7%" }}>
-                        <Container>
-                            <Menu attached='top' tabular>
-                                <Menu.Item name='Scenario' active={this.state.activeItem === 'scenario'} onClick={() => this.handleChange({ name: 'activeItem', value: 'scenario' })} />
-                                <Menu.Item name='Decoration' active={this.state.activeItem === 'decoration'} onClick={() => this.handleChange({ name: 'activeItem', value: 'decoration' })} />
-                                <Menu.Item name='size' active={this.state.activeItem === 'size'} onClick={() => this.handleChange({ name: 'activeItem', value: 'size' })} />
-                                <Menu.Item name='location' active={this.state.activeItem === 'location'} onClick={() => this.handleChange({ name: 'activeItem', value: 'location' })} />
-                                <Menu.Item name='ownership' active={this.state.activeItem === 'ownership'} onClick={() => this.handleChange({ name: 'activeItem', value: 'ownership' })} />
-                                <Menu.Item name='product' active={this.state.activeItem === 'product'} onClick={() => this.handleChange({ name: 'activeItem', value: 'product' })} />
-                                <Menu.Item name='human' active={this.state.activeItem === 'human'} onClick={() => this.handleChange({ name: 'activeItem', value: 'human' })} />
-                                <Menu.Item name='marketing' active={this.state.activeItem === 'marketing'} onClick={() => this.handleChange({ name: 'activeItem', value: 'marketing' })} />
-                                <Menu.Item name='competitor' active={this.state.activeItem === 'competitor'} onClick={() => this.handleChange({ name: 'activeItem', value: 'competitor' })} />
-                            </Menu>
-                            <Segment attached='bottom' stacked secondary>
-                                {this.state.activeItem === 'scenario' ?
-                                    <DeleteScenario
-                                        scenario={this.state.scenario}
-                                        selectedScenario={this.state.selectedScenario}
-                                        currentPage={this.state.currentPage}
-                                        handleScenarioDelete={this.handleScenarioDelete}
-                                        handleSelected={this.handleSelected}
-                                    /> : ''}
-                                {this.state.activeItem === 'decoration' ?
-                                    <DeleteDecoration
-                                        decorationOption={this.state.decorationOption}
-                                        decoration={this.state.decoration}
-                                        currentPage={this.state.currentPage}
-                                        handleScenarioDelete={this.handleScenarioDelete}
-                                        handleSelected={this.handleSelected}
-                                    /> : ''}
-                                {this.state.activeItem === 'size' ?
-                                    <DeleteSize
-                                        sizeOption={this.state.sizeOption}
-                                        size={this.state.size}
-                                        currentPage={this.state.currentPage}
-                                        handleScenarioDelete={this.handleScenarioDelete}
-                                        handleSelected={this.handleSelected}
-                                    /> : ''}
-                                {this.state.activeItem === 'location' ?
-                                    <DeleteLocation
-                                        locationOption={this.state.locationOption}
-                                        location={this.state.location}
-                                        currentPage={this.state.currentPage}
-                                        handleScenarioDelete={this.handleScenarioDelete}
-                                        handleSelected={this.handleSelected}
-                                    /> : ''}
-                                {this.state.activeItem === 'ownership' ?
-                                    <DeleteOwnership
-                                        ownershipOption={this.state.ownershipOption}
-                                        ownership={this.state.ownership}
-                                        currentPage={this.state.currentPage}
-                                        handleScenarioDelete={this.handleScenarioDelete}
-                                        handleSelected={this.handleSelected}
-                                    /> : ''}
-                                {this.state.activeItem === 'product' ?
-                                    <DeleteProduct
-                                        productOption={this.state.productOption}
-                                        product={this.state.product}
-                                        currentPage={this.state.currentPage}
-                                        handleScenarioDelete={this.handleScenarioDelete}
-                                        handleSelected={this.handleSelected}
-                                    /> : ''}
-                                {this.state.activeItem === 'human' ?
-                                    <DeleteHumanResource
-                                        humanOption={this.state.humanOption}
-                                        human={this.state.human}
-                                        currentPage={this.state.currentPage}
-                                        handleScenarioDelete={this.handleScenarioDelete}
-                                        handleSelected={this.handleSelected}
-                                    /> : ''}
-                                {this.state.activeItem === 'marketing' ?
-                                    <DeleteMarketing
-                                        marketingOption={this.state.marketingOption}
-                                        marketing={this.state.marketing}
-                                        currentPage={this.state.currentPage}
-                                        handleScenarioDelete={this.handleScenarioDelete}
-                                        handleSelected={this.handleSelected}
-                                    /> : ''}
-                                {this.state.activeItem === 'competitor' ?
-                                    <DeleteCompetitor
-                                        competitorOption={this.state.competitorOption}
-                                        competitor={this.state.competitor}
-                                        currentPage={this.state.currentPage}
-                                        handleScenarioDelete={this.handleScenarioDelete}
-                                        handleSelected={this.handleSelected}
-                                    /> : ''}
-                                <Grid verticalAlign='middle' columns={3}>
-                                    <Grid.Column></Grid.Column>
-                                    <Grid.Column>
-                                        <Pagination
-                                            activePage={this.state.currentPage}
-                                            onPageChange={(e, { activePage }) => this.handlePaginationChange(activePage)}
-                                            ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
-                                            firstItem={{ content: <Icon name='angle double left' />, icon: true }}
-                                            lastItem={{ content: <Icon name='angle double right' />, icon: true }}
-                                            prevItem={{ content: <Icon name='angle left' />, icon: true }}
-                                            nextItem={{ content: <Icon name='angle right' />, icon: true }}
-                                            totalPages={this.state.scenario.length}
-                                        />
-                                    </Grid.Column>
-                                    <Grid.Column></Grid.Column>
-                                </Grid>
-                            </Segment>
-                        </Container>
-                    </Body_Main >
-                </Bg_wrap>
+                <div>
+                    <Bg_wrap>
+                        <Back_hv style={{ paddingTop: "2%", position: "absolute" }} name="arrow alternate circle left" size='huge' link color='grey' onClick={() => this.handleLocation('Management')} />
+                        <Body_Main id="main" style={{ paddingTop: "7%" }}>
+                            <Container>
+                                <Menu attached='top' tabular>
+                                    <Menu.Item name='Scenario' active={this.state.activeItem === 'scenario'} onClick={() => this.handleChange({ name: 'activeItem', value: 'scenario' })} />
+                                    <Menu.Item name='Decoration' active={this.state.activeItem === 'decoration'} onClick={() => this.handleChange({ name: 'activeItem', value: 'decoration' })} />
+                                    <Menu.Item name='size' active={this.state.activeItem === 'size'} onClick={() => this.handleChange({ name: 'activeItem', value: 'size' })} />
+                                    <Menu.Item name='location' active={this.state.activeItem === 'location'} onClick={() => this.handleChange({ name: 'activeItem', value: 'location' })} />
+                                    <Menu.Item name='ownership' active={this.state.activeItem === 'ownership'} onClick={() => this.handleChange({ name: 'activeItem', value: 'ownership' })} />
+                                    <Menu.Item name='product' active={this.state.activeItem === 'product'} onClick={() => this.handleChange({ name: 'activeItem', value: 'product' })} />
+                                    <Menu.Item name='human' active={this.state.activeItem === 'human'} onClick={() => this.handleChange({ name: 'activeItem', value: 'human' })} />
+                                    <Menu.Item name='marketing' active={this.state.activeItem === 'marketing'} onClick={() => this.handleChange({ name: 'activeItem', value: 'marketing' })} />
+                                    <Menu.Item name='competitor' active={this.state.activeItem === 'competitor'} onClick={() => this.handleChange({ name: 'activeItem', value: 'competitor' })} />
+                                </Menu>
+                                <Segment attached='bottom' stacked secondary>
+                                    {this.state.activeItem === 'scenario' ?
+                                        <DeleteScenario
+                                            scenario={this.state.scenario}
+                                            selectedScenario={this.state.selectedScenario}
+                                            currentPage={this.state.currentPage}
+                                            handleScenarioDelete={this.handleScenarioDelete}
+                                            handleSelected={this.handleSelected}
+                                        /> : ''}
+                                    {this.state.activeItem === 'decoration' ?
+                                        <DeleteDecoration
+                                            decorationOption={this.state.decorationOption}
+                                            decoration={this.state.decoration}
+                                            currentPage={this.state.currentPage}
+                                            handleScenarioDelete={this.handleScenarioDelete}
+                                            handleSelected={this.handleSelected}
+                                        /> : ''}
+                                    {this.state.activeItem === 'size' ?
+                                        <DeleteSize
+                                            sizeOption={this.state.sizeOption}
+                                            size={this.state.size}
+                                            currentPage={this.state.currentPage}
+                                            handleScenarioDelete={this.handleScenarioDelete}
+                                            handleSelected={this.handleSelected}
+                                        /> : ''}
+                                    {this.state.activeItem === 'location' ?
+                                        <DeleteLocation
+                                            locationOption={this.state.locationOption}
+                                            location={this.state.location}
+                                            currentPage={this.state.currentPage}
+                                            handleScenarioDelete={this.handleScenarioDelete}
+                                            handleSelected={this.handleSelected}
+                                        /> : ''}
+                                    {this.state.activeItem === 'ownership' ?
+                                        <DeleteOwnership
+                                            ownershipOption={this.state.ownershipOption}
+                                            ownership={this.state.ownership}
+                                            currentPage={this.state.currentPage}
+                                            handleScenarioDelete={this.handleScenarioDelete}
+                                            handleSelected={this.handleSelected}
+                                        /> : ''}
+                                    {this.state.activeItem === 'product' ?
+                                        <DeleteProduct
+                                            productOption={this.state.productOption}
+                                            product={this.state.product}
+                                            currentPage={this.state.currentPage}
+                                            handleScenarioDelete={this.handleScenarioDelete}
+                                            handleSelected={this.handleSelected}
+                                        /> : ''}
+                                    {this.state.activeItem === 'human' ?
+                                        <DeleteHumanResource
+                                            humanOption={this.state.humanOption}
+                                            human={this.state.human}
+                                            currentPage={this.state.currentPage}
+                                            handleScenarioDelete={this.handleScenarioDelete}
+                                            handleSelected={this.handleSelected}
+                                        /> : ''}
+                                    {this.state.activeItem === 'marketing' ?
+                                        <DeleteMarketing
+                                            marketingOption={this.state.marketingOption}
+                                            marketing={this.state.marketing}
+                                            currentPage={this.state.currentPage}
+                                            handleScenarioDelete={this.handleScenarioDelete}
+                                            handleSelected={this.handleSelected}
+                                        /> : ''}
+                                    {this.state.activeItem === 'competitor' ?
+                                        <DeleteCompetitor
+                                            competitorOption={this.state.competitorOption}
+                                            competitor={this.state.competitor}
+                                            currentPage={this.state.currentPage}
+                                            handleScenarioDelete={this.handleScenarioDelete}
+                                            handleSelected={this.handleSelected}
+                                        /> : ''}
+                                    <Grid verticalAlign='middle' columns={3}>
+                                        <Grid.Column></Grid.Column>
+                                        <Grid.Column>
+                                            <Pagination
+                                                activePage={this.state.currentPage}
+                                                onPageChange={(e, { activePage }) => this.handlePaginationChange(activePage)}
+                                                ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
+                                                firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                                                lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                                                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                                                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                                                totalPages={this.state.scenario.length}
+                                            />
+                                        </Grid.Column>
+                                        <Grid.Column></Grid.Column>
+                                    </Grid>
+                                </Segment>
+                            </Container>
+                        </Body_Main >
+                    </Bg_wrap>
+                    <FooterTeal />
+                </div>
             )
         } else {
             return (<Bg_wrap fluid></Bg_wrap>)

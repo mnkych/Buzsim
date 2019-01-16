@@ -53,10 +53,7 @@ export default class Splash extends React.Component {
                 const data = await getUserInfo(this.state.username)
                 if (data[0] && data !== false) {
                     let hash = CryptoJS.MD5(data[0].Salt + this.state.password)
-                    let password = ''
-                    hash.words.map(e => {
-                        password += e
-                    })
+                    let password = hash.toString()
                     const user = await getUser(this.state.username, password)
                     if (user) {
                         const toast = swal.mixin({

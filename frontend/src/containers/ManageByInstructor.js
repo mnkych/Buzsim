@@ -12,6 +12,7 @@ import {
     BounceInAminateCard,
     FadeInAnimate
 } from '../Provider/CSS/animation';
+import FooterTeal from '../components/Footer/FooterTeal'
 import styled from 'styled-components';
 import bgadmin from '../Static/img/bgadmin.svg';
 import { Back_hv } from '../Provider/CSS/hover';
@@ -39,7 +40,7 @@ export default class AdminManagement extends React.Component {
         currentComponent: "management"
     }
     componentWillMount = () => {
-        if (!UserProvider.getUserOnLog()){
+        if (!UserProvider.getUserOnLog()) {
             swal({
                 position: 'center',
                 type: 'info',
@@ -155,36 +156,39 @@ export default class AdminManagement extends React.Component {
     render() {
         if (UserProvider.getUserOnLog()) {
             return (
-                <Bg_wrap fluid>
-                    {this.state.currentComponent === "management" ?
-                        ""
-                        :
-                        <Back_hv style={{ paddingTop: "2%", position: "absolute" }} name="arrow alternate circle left" size='huge' link color='grey' onClick={this.goToManagement} />
-                    }
-                    <div style={{ right: "2%", paddingTop: "2%", position: "absolute" }}>
-                        <Button onClick={this.logOut} basic content='Log out' circular icon='unlock' />
-                    </div>
-                    <Grid container style={{ height: "80%" }} columns={3}>
-                        <Grid.Column>
-                        </Grid.Column>
-                        <Grid.Column style={{ top: "20%" }} textAlign="center">
-                            {this.state.currentComponent === "scenario" ?
-                                <FadeInAnimate>
-                                    <Header as='h1' style={{ color: "#FFFFFF" }}>
-                                        <Header.Content>
-                                            Scenario Management
+                <div>
+                    <Bg_wrap fluid>
+                        {this.state.currentComponent === "management" ?
+                            ""
+                            :
+                            <Back_hv style={{ paddingTop: "2%", position: "absolute" }} name="arrow alternate circle left" size='huge' link color='grey' onClick={this.goToManagement} />
+                        }
+                        <div style={{ right: "2%", paddingTop: "2%", position: "absolute" }}>
+                            <Button onClick={this.logOut} basic content='Log out' circular icon='unlock' />
+                        </div>
+                        <Grid container style={{ height: "80%" }} columns={3}>
+                            <Grid.Column>
+                            </Grid.Column>
+                            <Grid.Column style={{ top: "20%" }} textAlign="center">
+                                {this.state.currentComponent === "scenario" ?
+                                    <FadeInAnimate>
+                                        <Header as='h1' style={{ color: "#FFFFFF" }}>
+                                            <Header.Content>
+                                                Scenario Management
                                         </Header.Content>
-                                    </Header>
-                                </FadeInAnimate>
-                                :
-                                ""
-                            }
-                        </Grid.Column>
-                        <Grid.Column>
-                        </Grid.Column>
-                    </Grid>
-                    {this.showCurrentCard()}
-                </Bg_wrap>
+                                        </Header>
+                                    </FadeInAnimate>
+                                    :
+                                    ""
+                                }
+                            </Grid.Column>
+                            <Grid.Column>
+                            </Grid.Column>
+                        </Grid>
+                        {this.showCurrentCard()}
+                    </Bg_wrap>
+                    <FooterTeal />
+                </div>
             )
         } else {
             return (<Bg_wrap fluid></Bg_wrap>)

@@ -195,7 +195,7 @@ export default class CashFlowReport extends React.Component {
                 this.props.marketingSelected,
                 this.props.decorationSelected
             )
-        value = showCNWCapital.map((e, i) => { 
+        value = showCNWCapital.map((e, i) => {
             return (
                 <Table.HeaderCell style={{ borderTop: 'solid 2px #000000' }} key={"Col" + i}>{e.toLocaleString('EN')}</Table.HeaderCell>
             )
@@ -252,7 +252,7 @@ export default class CashFlowReport extends React.Component {
             this.props.businessScenarioData.BusinessPlayingYear,
         )
         showInterest = result.map((e, index) => {
-            return <Table.Cell key={index}>{(e.interest * (-1).toLocaleString('EN'))}</Table.Cell>
+            return <Table.Cell key={index}>{(e.interest * (-1)).toLocaleString('EN')}</Table.Cell>
         })
         return showInterest
     }
@@ -262,7 +262,7 @@ export default class CashFlowReport extends React.Component {
             this.props.decorationSelected,
             this.props.productSelected,
             this.props.businessScenarioData,
-            this.props.businessScenarioData.BusinessPlayingYear, 
+            this.props.businessScenarioData.BusinessPlayingYear,
         )
         showFinanceCashflow = result.map((e, index) => {
             return <Table.HeaderCell key={index}>{e.toLocaleString('EN')}</Table.HeaderCell>
@@ -344,17 +344,45 @@ export default class CashFlowReport extends React.Component {
         })
         return value
     }
+    showTotalInvestmentCashFlow = () => {
+        let value = []
+        for (let i = 0; i <= this.props.businessScenarioData.BusinessPlayingYear; i++) {
+            if (i === 0) {
+                value.push(
+                    <Table.HeaderCell key={"Col" + i}>
+                        {this.props.decorationSelected !== undefined || this.props.productSelected !== undefined || this.props.businessScenarioData !== undefined ?
+                            (Math.round(((this.props.businessScenarioData.BusinessStartMoney - calculateTotalDept(this.props.decorationSelected, this.props.productSelected, this.props.businessScenarioData)) * (-1)) * 100) / 100).toLocaleString('EN')
+                            : 0}
+                    </Table.HeaderCell>
+                )
+            } else {
+                value.push(
+                    <Table.HeaderCell key={"Col" + i}>0</Table.HeaderCell>
+                )
+            }
+        }
+        return value
+    }
+    showZero = () => {
+        let zero = []
+        for (let i = 0; i <= this.props.businessScenarioData.BusinessPlayingYear; i++) {
+            zero.push(
+                <Table.Cell key={"Col" + i}>0</Table.Cell>
+            )
+        }
+        return zero
+    }
     render() {
-
+        let BusinessPlayingYear = this.props.businessScenarioData.BusinessPlayingYear
         return (
             <div>
                 <Scrollbars
                     style={{ width: '100%', height: 1000 }}
-                    >
+                >
                     <Table singleLine size='small'>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell colSpan='12'>
+                                <Table.HeaderCell colSpan={BusinessPlayingYear + 2}>
                                     Cash Flow
                             </Table.HeaderCell>
                             </Table.Row>
@@ -366,7 +394,7 @@ export default class CashFlowReport extends React.Component {
                         <Table.Body>
                             <Table.Row style={{ backgroundColor: '#F1F1F1' }}>
                                 <Table.HeaderCell style={{ borderTop: 'solid 2px #000000' }}>Internal rate of return (IRR)</Table.HeaderCell>
-                                <Table.HeaderCell colSpan='11' style={{ borderTop: 'solid 2px #000000' }}>
+                                <Table.HeaderCell colSpan={BusinessPlayingYear + 1} style={{ borderTop: 'solid 2px #000000' }}>
                                     {this.props === undefined && this.props !== {} && this.props !== null ? 0 : calculateIRR(
                                         this.props.productSelected,
                                         this.props.productTypeAcceptSelected,
@@ -381,11 +409,15 @@ export default class CashFlowReport extends React.Component {
                                         this.props.targetGroupSelected,
                                         this.props.marketingSelected,
                                         this.props.decorationSelected
-                                    )+' %'}
+                                    ) + ' %'}
                                 </Table.HeaderCell>
                             </Table.Row>
                             <Table.Row>
-                                <Table.HeaderCell colSpan='12' style={{ borderTop: 'solid 2px #000000' }}>Working Capital</Table.HeaderCell>
+                                <Table.HeaderCell colSpan={BusinessPlayingYear + 2} style={{ borderTop: 'solid 2px #000000' }}>Working Capital</Table.HeaderCell>
+                            </Table.Row>
+                            <Table.Row>
+                                <Table.Cell style={{ paddingLeft: '2em' }}>Accout Receivable</Table.Cell>
+                                {this.showZero()}
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell style={{ paddingLeft: '2em' }}>Inventory</Table.Cell>
@@ -408,7 +440,7 @@ export default class CashFlowReport extends React.Component {
                                 {this.showChangeInNetWorkingCapital()}
                             </Table.Row>
                             <Table.Row>
-                                <Table.HeaderCell colSpan='12' style={{ borderTop: 'solid 2px #000000' }}>Operating Cash flow</Table.HeaderCell>
+                                <Table.HeaderCell colSpan={BusinessPlayingYear + 2} style={{ borderTop: 'solid 2px #000000' }}>Operating Cash flow</Table.HeaderCell>
                             </Table.Row>
                             <Table.Row><Table.Cell style={{ paddingLeft: '2em' }}>Operating profit</Table.Cell>
                                 {this.showOperatingProfit()}
@@ -423,7 +455,7 @@ export default class CashFlowReport extends React.Component {
                                 {this.showInterest()}
                             </Table.Row>
                             <Table.Row>
-                                <Table.HeaderCell style={{ paddingLeft: '2em',borderTop: 'solid 2px #000000' }}>Change in Net working Capital</Table.HeaderCell>
+                                <Table.HeaderCell style={{ paddingLeft: '2em', borderTop: 'solid 2px #000000' }}>Change in Net working Capital</Table.HeaderCell>
                                 {this.showChangeInNetWorkingCapital()}
                             </Table.Row>
                             <Table.Row style={{ backgroundColor: '#F1F1F1' }}>
@@ -431,15 +463,15 @@ export default class CashFlowReport extends React.Component {
                                 {this.showTotalOperatingCashFlow()}
                             </Table.Row>
                             <Table.Row>
-                                <Table.HeaderCell colSpan='12' style={{ borderTop: 'solid 2px #000000' }}>Financial Cash flow</Table.HeaderCell>
+                                <Table.HeaderCell colSpan={BusinessPlayingYear + 2} style={{ borderTop: 'solid 2px #000000' }}>Financial Cash flow</Table.HeaderCell>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell style={{ paddingLeft: '2em' }}>Equity</Table.Cell>
-                                <Table.Cell colSpan='11'>{this.props.businessScenarioData === undefined ? 0 : this.props.businessScenarioData.BusinessStartMoney.toLocaleString('EN')}</Table.Cell>
+                                <Table.Cell colSpan={BusinessPlayingYear + 1}>{this.props.businessScenarioData === undefined ? 0 : this.props.businessScenarioData.BusinessStartMoney.toLocaleString('EN')}</Table.Cell>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell style={{ paddingLeft: '2em' }}>Loan drawdown</Table.Cell>
-                                <Table.Cell colSpan='11'>
+                                <Table.Cell colSpan={BusinessPlayingYear + 1}>
                                     {this.props.decorationSelected !== undefined || this.props.productSelected !== undefined || this.props.businessScenarioData !== undefined ?
                                         calculateTotalDept(this.props.decorationSelected, this.props.productSelected, this.props.businessScenarioData) * (-1) > 0 ?
                                             (calculateTotalDept(this.props.decorationSelected, this.props.productSelected, this.props.businessScenarioData) * (-1)).toLocaleString('EN') : 0
@@ -454,17 +486,32 @@ export default class CashFlowReport extends React.Component {
                                 <Table.Cell style={{ paddingLeft: '2em' }}>Interest payment</Table.Cell>
                                 {this.showInterestPayment()}
                             </Table.Row>
+                            <Table.Row>
+                                <Table.Cell style={{ paddingLeft: '2em' }}>Dividend Payout</Table.Cell>
+                                {this.showZero()}
+                            </Table.Row>
                             <Table.Row style={{ backgroundColor: '#F1F1F1' }}>
                                 <Table.HeaderCell>Total Financial Cash flow</Table.HeaderCell>
                                 {this.showTotalFinancialCashFlow()}
                             </Table.Row>
-                            <Table.Row style={{ backgroundColor: '#F1F1F1' }}>
-                                <Table.HeaderCell style={{ borderTop: 'solid 2px #000000' }} >Investment</Table.HeaderCell>
-                                <Table.HeaderCell colSpan='11' style={{ borderTop: 'solid 2px #000000' }} >
+                            <Table.Row>
+                                <Table.HeaderCell colSpan={BusinessPlayingYear + 2} style={{ borderTop: 'solid 2px #000000' }}>Investment Cash Flow</Table.HeaderCell>
+                            </Table.Row>
+                            <Table.Row>
+                                <Table.Cell style={{ paddingLeft: '2em' }}>Investment</Table.Cell>
+                                <Table.Cell colSpan={BusinessPlayingYear + 1}>
                                     {this.props.decorationSelected !== undefined || this.props.productSelected !== undefined || this.props.businessScenarioData !== undefined ?
-                                            (Math.round(((this.props.businessScenarioData.BusinessStartMoney - calculateTotalDept(this.props.decorationSelected, this.props.productSelected, this.props.businessScenarioData)) * (-1)) * 100) / 100).toLocaleString('EN')
+                                        (Math.round(((this.props.businessScenarioData.BusinessStartMoney - calculateTotalDept(this.props.decorationSelected, this.props.productSelected, this.props.businessScenarioData)) * (-1)) * 100) / 100).toLocaleString('EN')
                                         : 0}
-                                </Table.HeaderCell>
+                                </Table.Cell>
+                            </Table.Row>
+                            <Table.Row>
+                                <Table.Cell style={{ paddingLeft: '2em' }}>Assets write off</Table.Cell>
+                                {this.showZero()}
+                            </Table.Row>
+                            <Table.Row style={{ backgroundColor: '#F1F1F1' }}>
+                                <Table.HeaderCell>Total Investment Cash Flow</Table.HeaderCell>
+                                {this.showTotalInvestmentCashFlow()}
                             </Table.Row>
                             <Table.Row style={{ backgroundColor: '#F1F1F1' }}>
                                 <Table.HeaderCell style={{ borderTop: 'solid 2px #000000' }}>Net Cash Flow</Table.HeaderCell>

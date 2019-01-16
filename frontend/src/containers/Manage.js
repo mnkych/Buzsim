@@ -12,6 +12,7 @@ import Cost from '../components/Manage/Report/Cost';
 import ProductReport from '../components/Manage/Report/ProductReport';
 import Overview from '../components/Manage/Report/Overview';
 import MacroEnvironment from '../components/Manage/Report/MacroEnvironment';
+import Footer from '../components/Footer/Footer'
 import { Collapse } from 'reactstrap';
 import Draggable from 'react-draggable';
 import { getTimeChoices, calculateStoreOperatingTime, redirectPage, calculateMarketShare, getNumberOptions, calculateTotalDept } from '../Provider/StoreProvider/StoreProvider';
@@ -1622,6 +1623,7 @@ export default class Manage extends React.Component {
                         </Menu.Menu>
                     </Footer_scroll_bg>
                 </Footer_scroll>
+                <Footer/>
             </div >
         )
     }

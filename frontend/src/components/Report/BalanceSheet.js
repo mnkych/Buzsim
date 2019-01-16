@@ -99,7 +99,7 @@ export default class BalanceSheet extends React.Component {
             calculateAllTotalSpent(this.props.decorationSelected, this.props.businessScenarioData)
         value = deptExceptProduct.map((e, i) => {
             return (
-                <Table.Cell style={{ borderTop: 'solid 2px #000000' }} key={"Col" + i}>{e.toLocaleString('EN')}</Table.Cell>
+                <Table.Cell key={"Col" + i}>{e.toLocaleString('EN')}</Table.Cell>
             )
         })
         return value
@@ -349,14 +349,31 @@ export default class BalanceSheet extends React.Component {
         })
         return result
     }
-
+    showZero = () => {
+        let zero = []
+        for (let i = 0; i <= this.props.businessScenarioData.BusinessPlayingYear; i++) {
+            zero.push(
+                <Table.Cell key={"Col" + i}>0</Table.Cell>
+            )
+        }
+        return zero
+    }
+    showZeroTop = () => {
+        let zero = []
+        for (let i = 0; i <= this.props.businessScenarioData.BusinessPlayingYear; i++) {
+            zero.push(
+                <Table.Cell style={{borderTop: 'solid 2px #000000' }} key={"Col" + i}>0</Table.Cell>
+            )
+        }
+        return zero
+    }
     render() {
         return (
             <Scrollbars style={{ width: '100%', height: 1000 }} >
                 <Table size='small' singleLine>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell colSpan='12'>
+                            <Table.HeaderCell colSpan={this.props.businessScenarioData.BusinessPlayingYear+2}>
                                 Balance Sheet
                             </Table.HeaderCell>
                         </Table.Row>
@@ -371,15 +388,31 @@ export default class BalanceSheet extends React.Component {
                             {this.showCash()}
                         </Table.Row>
                         <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '2em' }}>Short term Investment</Table.Cell>
+                            {this.showZero()}
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '2em' }}>Account Receivable</Table.Cell>
+                            {this.showZero()}
+                        </Table.Row>
+                        <Table.Row>
                             <Table.Cell style={{ paddingLeft: '2em' }}>Inventory</Table.Cell>
                             {this.showTotalCurrentInventoryValue()}
                         </Table.Row>
+                        <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '2em' }}>Others</Table.Cell>
+                            {this.showZero()}
+                        </Table.Row>
                         <Table.Row style={{ backgroundColor: '#F1F1F1' }}>
-                            <Table.HeaderCell>Total Current assets</Table.HeaderCell>
+                            <Table.HeaderCell>Total Current Assets</Table.HeaderCell>
                             {this.showTotalCurrentAssest()}
                         </Table.Row>
                         <Table.Row>
-                            <Table.Cell style={{ paddingLeft: '2em',borderTop: 'solid 2px #000000'}}>Building and Equipments</Table.Cell>
+                            <Table.Cell style={{ paddingLeft: '2em',borderTop: 'solid 2px #000000'}}>Land</Table.Cell>
+                            {this.showZeroTop()}
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '2em'}}>Building and Equipments</Table.Cell>
                             {this.showBuildingAndEquipment()}
                         </Table.Row>
                         <Table.Row>
@@ -387,11 +420,15 @@ export default class BalanceSheet extends React.Component {
                             {this.showIntangible()}
                         </Table.Row>
                         <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '2em'}}>Others</Table.Cell>
+                            {this.showZero()}
+                        </Table.Row>
+                        <Table.Row>
                             <Table.Cell style={{ paddingLeft: '2em' }}>Depreciation & Amortization</Table.Cell>
                             {this.showAccumulated()}
                         </Table.Row>
                         <Table.Row style={{ backgroundColor: '#F1F1F1' }}> 
-                            <Table.HeaderCell>Total Non-Current assets</Table.HeaderCell>
+                            <Table.HeaderCell>Total Non-Current Assets</Table.HeaderCell>
                             {this.showNonCurrentAssets()}
                         </Table.Row>
                         <Table.Row>
@@ -399,7 +436,7 @@ export default class BalanceSheet extends React.Component {
                             {this.showTotalAssest()}
                         </Table.Row>
                         <Table.Row>
-                            <Table.HeaderCell colSpan='12' style={{borderTop: 'solid 2px #000000' }}>Liabilities</Table.HeaderCell>
+                            <Table.HeaderCell colSpan={this.props.businessScenarioData.BusinessPlayingYear+2} style={{borderTop: 'solid 2px #000000' }}>Liabilities</Table.HeaderCell>
                         </Table.Row>
                         <Table.Row>
                             <Table.Cell style={{ paddingLeft: '4em' }}>A/P</Table.Cell>
@@ -409,13 +446,25 @@ export default class BalanceSheet extends React.Component {
                             <Table.Cell style={{ paddingLeft: '4em' }}>Short-term liability</Table.Cell>
                             {this.showShortTerm()}
                         </Table.Row>
+                        <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '4em'}}>Others</Table.Cell>
+                            {this.showZero()}
+                        </Table.Row>
                         <Table.Row style={{ backgroundColor: '#F1F1F1' }}>
                             <Table.HeaderCell style={{ paddingLeft: '2em' }}>Total Current Liabilities</Table.HeaderCell> 
                             {this.showTotalCurrentLiability()}
                         </Table.Row>
+                        <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '4em'}}>Contingent Liabilities</Table.Cell>
+                            {this.showZero()}
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '4em' }}>Long-term Loan</Table.Cell>
+                            {this.showLongTermLoan()}
+                        </Table.Row>
                         <Table.Row style={{ backgroundColor: '#F1F1F1' }}>
                             <Table.HeaderCell style={{ paddingLeft: '2em' }}>
-                                Total Non-Current Liabilities(Long Term Loan)
+                                Total Non-Current Liabilities
                             </Table.HeaderCell>
                             {this.showLongTermLoan()}
                         </Table.Row>
@@ -426,14 +475,14 @@ export default class BalanceSheet extends React.Component {
                             {this.showTotalLiability()}
                         </Table.Row>
                         <Table.Row>
-                            <Table.HeaderCell colSpan='12' style={{ borderTop: 'solid 2px #000000' }}>Equity</Table.HeaderCell>
+                            <Table.HeaderCell colSpan={this.props.businessScenarioData.BusinessPlayingYear+2} style={{ borderTop: 'solid 2px #000000' }}>Equity</Table.HeaderCell>
                         </Table.Row>
                         <Table.Row>
                             <Table.Cell>Registered and Paid Up Capital</Table.Cell>
                             {this.showRegisterEquity()}
                         </Table.Row>
                         <Table.Row >
-                            <Table.Cell colSpan='12'>Retained Earning</Table.Cell>
+                            <Table.Cell colSpan={this.props.businessScenarioData.BusinessPlayingYear+2}>Retained Earning</Table.Cell>
                         </Table.Row>
                         <Table.Row>
                             <Table.Cell style={{ paddingLeft: '2em' }}>Appropriated - Reserve</Table.Cell>
@@ -442,6 +491,10 @@ export default class BalanceSheet extends React.Component {
                         <Table.Row>
                             <Table.Cell style={{ paddingLeft: '2em' }}>Unappropriated</Table.Cell>
                             {this.showUnappropriated()}
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '2em'}}>Accumulated Reserve for Re-Investment</Table.Cell>
+                            {this.showZero()}
                         </Table.Row>
                         <Table.Row active>
                             <Table.HeaderCell>
@@ -453,10 +506,6 @@ export default class BalanceSheet extends React.Component {
                             <Table.HeaderCell style={{ borderTop: 'solid 2px #000000' }}>Total Liabilities and Equity</Table.HeaderCell>
                             {this.showEquityAndLiability()}
                         </Table.Row>
-                        {/* <Table.Row>
-                            <Table.Cell style={{ borderTop: 'solid 2px #000000' }}>Check</Table.Cell>
-                            {this.showCheck()}
-                        </Table.Row> */}
                     </Table.Body>
                 </Table>
             </Scrollbars>

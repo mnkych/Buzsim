@@ -176,6 +176,10 @@ export default class ClassroomManagement extends React.Component {
                                                 <Icon name="add" />
                                                 Create
                                             </Button>
+                                            <Button color='blue' onClick={() => this.props.handleLocation('Management')}>
+                                                <Icon name="home" />
+                                                Done
+                                            </Button>
                                         </Grid.Column>
                                         <Grid.Column textAlign='right'>
                                             <Pagination

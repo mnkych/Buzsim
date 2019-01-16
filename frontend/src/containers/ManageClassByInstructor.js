@@ -1,5 +1,6 @@
 import React from 'react';
 import ClassroomManagement from '../components/ManageClassroom/ManageClassroom';
+import FooterTeal from '../components/Footer/FooterTeal'
 import { getAllBusiness, getEnterCode, getSeClassroom, getSelectSeStoreClassID, getSelectSeStoreStoreID, getBusinessScenario, getCompetitor, getSizeChoice, getLocationChoice, getOwnershipChoice, getTargetGroupChoice, getProductChoice, getMarketing, getProductDetail, getStoreOperationUserSelected, getStoreDecorationSelected, getStoreMarketingSelected, getStoreHumanResourceSelected, getStoreProductSelected, getEmployee, getDecorationChoice, getBusinessSizeLocationOwnership, getProductAccept } from '../Provider/GetData/GetData'
 import { insertClassroom } from '../Provider/InsertData/InsertData';
 import { UserProvider, UserSelectedProvider } from '../Provider/UserProvider/UserProvider'
@@ -243,7 +244,7 @@ export default class AdminClassRoomManagement extends React.Component {
             }
         }
         product = await product.map(e => {
-            return { ProductID: e.ProductID, productDetail: {ProductQualityID:e.ProductQualityID,BasePricePerUnit:e.BasePricePerUnit,QualityID:e.QualityID,ProductID:e.ProductID,BusinessProductSellerID:e.BusinessProductSellerID,BusinessID:e.BusinessID,QualityName:e.QualityName,MarketSharedScore:e.MarketSharedScore,ProductName:e.ProductName,ProductType:e.ProductType,ProductDepreciationRatio:e.ProductDepreciationRatio}, sellingPrice: e.PriceForSale, amount: e.Amount }
+            return { ProductID: e.ProductID, productDetail: { ProductQualityID: e.ProductQualityID, BasePricePerUnit: e.BasePricePerUnit, QualityID: e.QualityID, ProductID: e.ProductID, BusinessProductSellerID: e.BusinessProductSellerID, BusinessID: e.BusinessID, QualityName: e.QualityName, MarketSharedScore: e.MarketSharedScore, ProductName: e.ProductName, ProductType: e.ProductType, ProductDepreciationRatio: e.ProductDepreciationRatio }, sellingPrice: e.PriceForSale, amount: e.Amount }
         })
         targetGroup = await dataTarget.data.find(e => {
             return e.BusinessTargetGroupID === related.BusinessTargetGroupID
@@ -312,8 +313,8 @@ export default class AdminClassRoomManagement extends React.Component {
                 parttimeEmployeeSelected: partHuman,
                 productTypeAcceptSelected: accept,
                 businessScenarioData: { ...dataBis.data, ...relatedSelected },
-                confirmCheck:false,
-                fromAdmin:true
+                confirmCheck: false,
+                fromAdmin: true
             })
             window.open(window.location.origin + "/Report", '_blank', 'toolbar=0,location=0,menubar=0');
         })
@@ -343,25 +344,28 @@ export default class AdminClassRoomManagement extends React.Component {
     render() {
         if (UserProvider.getUserOnLog()) {
             return (
-                <ClassroomManagement
-                    classroom={this.state.classroom}
-                    scenario={this.state.scenario}
-                    EnterCode={this.state.EnterCode}
+                <div>
+                    <ClassroomManagement
+                        classroom={this.state.classroom}
+                        scenario={this.state.scenario}
+                        EnterCode={this.state.EnterCode}
 
-                    CodeInput={this.state.CodeInput}
-                    NameInput={this.state.NameInput}
-                    selectedScenario={this.state.selectedScenario}
+                        CodeInput={this.state.CodeInput}
+                        NameInput={this.state.NameInput}
+                        selectedScenario={this.state.selectedScenario}
 
-                    handleClassroomDelete={this.handleClassroomDelete}
-                    handleSelected={this.handleSelected}
-                    handleLocation={this.handleLocation}
-                    handleSubmit={this.handleSubmit}
-                    handleChange={this.handleChange}
+                        handleClassroomDelete={this.handleClassroomDelete}
+                        handleSelected={this.handleSelected}
+                        handleLocation={this.handleLocation}
+                        handleSubmit={this.handleSubmit}
+                        handleChange={this.handleChange}
 
-                    handleModal={this.handleModal}
-                    students={this.state.students}
-                    handleStudentReport={this.handleStudentReport}
-                />
+                        handleModal={this.handleModal}
+                        students={this.state.students}
+                        handleStudentReport={this.handleStudentReport}
+                    />
+                    <FooterTeal />
+                </div>
             )
         } else {
             return (<Bg_wrap fluid></Bg_wrap>)

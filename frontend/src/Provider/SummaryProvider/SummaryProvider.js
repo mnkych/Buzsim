@@ -114,7 +114,7 @@ export const calculateDebtToEquityRatio = (stateProductSelected, productTypeAcce
     })
     return roa
 }
-export const calcaurateImageRating = (stateMarketing,scenario,stateLocation,numberOfYear) =>{
+export const calculateImageRating = (stateMarketing,scenario,stateLocation,numberOfYear) =>{
     let image = []
     let viewer = calculateTotalViewer(stateMarketing)
     let gross = calculateTotalPopulationNeedProduct(scenario,stateLocation,numberOfYear)
@@ -138,7 +138,7 @@ export const calculateCreditRating = (stateProductSelected, productTypeAcceptSel
     let creditRating = []
     let netProfit = calculateNetprofitToRevenueRatio(stateProductSelected, productTypeAcceptSelected, stateMainEmployee, statePartEmp, hour, stateDay, scenario, stateLocation, marketShared, numberOfYear, stateTargetGroup,stateMarketing,stateDecoration)
     let deptToEquity = calculateDebtToEquityRatio(stateProductSelected, productTypeAcceptSelected, stateMainEmployee, statePartEmp, hour, stateDay, scenario, stateLocation, marketShared, numberOfYear, stateTargetGroup,stateMarketing,stateDecoration)
-    let imageRating = calcaurateImageRating(stateMarketing,scenario,stateLocation,numberOfYear)
+    let imageRating = calculateImageRating(stateMarketing,scenario,stateLocation,numberOfYear)
     creditRating = netProfit.map((e,index)=>{
         if(e > 0 && deptToEquity[index] < 1 && imageRating[index] >= 2){
             return "Stable"

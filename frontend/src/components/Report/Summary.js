@@ -4,7 +4,7 @@ import {
     Icon,
     Label
 } from 'semantic-ui-react';
-import { calculateGrossProfitRatio, calculateEditdaToRevenueRatio, calculateNetprofitToRevenueRatio, calculateEPS, calculateROE, calculateROA, calculateDebtToEquityRatio, calcaurateImageRating, calculateCreditRating, calculateStockPrice } from '../../Provider/SummaryProvider/SummaryProvider';
+import { calculateGrossProfitRatio, calculateEditdaToRevenueRatio, calculateNetprofitToRevenueRatio, calculateEPS, calculateROE, calculateROA, calculateDebtToEquityRatio, calculateImageRating, calculateCreditRating, calculateStockPrice } from '../../Provider/SummaryProvider/SummaryProvider';
 
 export default class Summary extends React.Component {
     closeTab = () => {
@@ -175,7 +175,7 @@ export default class Summary extends React.Component {
     }
     showImageRating = () => {
         let imageRating = []
-        let ratio = calcaurateImageRating(
+        let ratio = calculateImageRating(
             this.props.marketingSelected,
             this.props.businessScenarioData,
             this.props.locationSelected,
@@ -243,7 +243,7 @@ export default class Summary extends React.Component {
             <Table size='small' singleLine>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell colSpan='11'>
+                        <Table.HeaderCell colSpan={this.props.businessScenarioData.BusinessPlayingYear+1}>
                             Financial Ratio ({this.props.businessScenarioData ? this.props.businessScenarioData.BusinessPlayingYear : ''} years estimation)
                                 </Table.HeaderCell>
                         <Table.HeaderCell colSpan='1' textAlign='right'>

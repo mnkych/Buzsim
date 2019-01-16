@@ -4,6 +4,7 @@ import BalanceSheet from '../components/Report/BalanceSheet';
 import CashFlowReport from '../components/Report/CashFlowReport';
 import NavbarContent from '../components/Navbar/Navbar';
 import Summary from '../components/Report/Summary';
+import Footer from '../components/Footer/Footer'
 import {
     redirectPage
 } from '../Provider/StoreProvider/StoreProvider'
@@ -382,6 +383,7 @@ export default class Report extends React.Component {
                         </Container>
                     </Content_wrap>
                 </Body_content>
+                <Footer/>
             </div>
         )
     }
