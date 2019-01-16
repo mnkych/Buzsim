@@ -18,7 +18,7 @@
 
 == BackEnd ==
 DB FOR BUZSIM  Contact @ SIT KMUTT (School of  Information Technology @ King Mongkut's University of Technology Thonburi)
-1) เข้าไปที่ Buzsim/backend/Configs
+1) เข้าไปที่ Buzsim/backend/
 2) สร้างไฟล์ .env
 	- ภายในไฟล์กำหนด Parameter 3 ตัว สำหรับเข้าถึง Databaseโดยใช้ชื่อ 
 		DB_HOST=XX___DB server host___XX
